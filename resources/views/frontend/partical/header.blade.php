@@ -71,7 +71,7 @@
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
                     </div>
                     {{-- <a href="" class="btn btn-primary py-2 px-4">Book A Table</a> --}}
- 
+                    <a href="{{route('Category.create')}}" class="btn btn-primary py-2 px-4">Create Category</a>
                     {{-- <a href="{{ route('product.create') }}" class="btn btn-primary py-2 px-4">Create product</a> --}}
                     {{-- <a href="{{route('Category.create')}}" class="btn btn-primary py-2 px-4">Create Category</a> --}}
                     {{-- <a href="{{route('Category.create')}}" class="btn btn-info">Create Category</a> --}}

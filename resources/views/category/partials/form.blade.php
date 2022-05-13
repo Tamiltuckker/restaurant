@@ -1,5 +1,5 @@
  @csrf
-  <div class="alert alert-danger" style="display:none"></div>
+ 
   <div class="form-group">
                  
     {{ Form::label('name', 'Name', array('class' => 'col-sm-2')) }}

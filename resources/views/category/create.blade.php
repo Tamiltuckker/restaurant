@@ -8,9 +8,9 @@
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
     crossorigin="anonymous"></script>
 </head>
-     @extends('layouts.app')
+     @extends('layouts.frontend.app') 
 
-    @section('content')
+    @section('content') 
      <meta name="_token" content="{{csrf_token()}}" /> 
 <div class="container">
     <div class="row justify-content-center"> 

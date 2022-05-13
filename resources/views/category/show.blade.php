@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.frontend.app') 
 <title>{{ ('Form') }}</title>
 @section('content')
 <div class="container">

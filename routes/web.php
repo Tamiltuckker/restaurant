@@ -1,10 +1,16 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Frontend\CategoryController;
+use App\Http\Controllers\Frontend\HomeController;
+
+
 
 /*
 |--------------------------------------------------------------------------
 | Web Routes
+
+
 |--------------------------------------------------------------------------
 |
 | Here is where you can register web routes for your application. These
@@ -19,16 +25,21 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/dashboard/frontend', function () {
-    return view('frontend.index');
-});
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::post('/Category', [App\Http\Controllers\CategoryController::class,'store'])->name('Category.store');
 Route::get('Category/edit/{id}', [App\Http\Controllers\CategoryController::class,'edit'])->name('Category.edit');
 Route::put('Category/update/{id}',[App\Http\Controllers\CategoryController::class,'update'])->name('Category.update');
 Route::get('/Category/{id}/show', [App\Http\Controllers\CategoryController::class,'show'])->name('Category.show');
-Route::get('/Category/delete/{id}', [App\Http\Controllers\CategoryController::class,'destroy'])->name('Category.destroy');
+Route::delete('/Category/delete/{id}', [App\Http\Controllers\CategoryController::class,'destroy'])->name('Category.destroy');
 Route::get('/Category/create', [App\Http\Controllers\CategoryController::class,'create'])->name('Category.create');
 Route::get('Category/index', [App\Http\Controllers\CategoryController::class,'index'])->name('Category.index');
+
+
+
+
+
+Route::get('/dashboard/frontend',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('frontend.dashboard');
+
+
+
+

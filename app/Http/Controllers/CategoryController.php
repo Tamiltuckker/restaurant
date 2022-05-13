@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Models\Attachment;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use passes;
@@ -33,10 +32,10 @@ class CategoryController extends BaseController
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+       public function create()
+        {
          return view('category/create');
-    }
+        }
 
     
 
@@ -55,6 +54,7 @@ class CategoryController extends BaseController
               $imagestore = ($request->file('image'))->store('uploads','public');
               $image->attachmentable_image = $imagestore;
               $attachment->image()->save($image);
+            
              return redirect()->action([CategoryController::class, 'index'])->with('success','New category added Successfully'); 
       
         }
@@ -88,6 +88,7 @@ class CategoryController extends BaseController
     {
       
         $txt = Category::findOrFail($id);
+       
         return view('category/edit', compact('txt'));
     }
 
@@ -100,15 +101,18 @@ class CategoryController extends BaseController
      */
     public function update($id, Request $request)
     {
+        $category = Category::find($id);
         
-      
-         $update = ['name' => $request->name];
-         if ($files = $request->file('image')) {
-         $profileImage =  $files->store('uploads','public');
-         $update['image'] = "$profileImage";
-           }
-         Category::where('id',$id)->update($update);
-         return redirect()->action([CategoryController::class, 'index'])->with('success','Update Successfully');
+        $category->name = $request->input('name');
+        $category->update();
+       
+           
+            Attachment::where('attachmentable_id', $category->id)->delete();
+            $attachment = new Attachment;
+            $imagestore = ($request->file('image'))->store('uploads','public');
+            $attachment->attachmentable_image = $imagestore;
+            $category->image()->save($attachment);
+            return redirect()->action([CategoryController::class, 'index'])->with('success','Update Successfully');
      }
 
 

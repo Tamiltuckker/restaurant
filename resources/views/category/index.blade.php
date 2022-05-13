@@ -1,5 +1,5 @@
 
-   @extends('layouts.app')
+   @extends('layouts.frontend.app') 
  
    @section('content')
        <div class="row">
@@ -33,13 +33,20 @@
               
                <td>{{$device->id }}</td>
                <td>{{$device->name }}</td>
+         
+              
                <td><img src="{{asset('/storage/'.$device->image->attachmentable_image)}}" height="30" width="50"/></td>
-              <td>
+           
+               <td>
                  <a href="{{route('Category.show',$device->id)}}" class="btn btn-info">Show</a>
                   <a href="{{route('Category.edit',$device->id)}}" class="btn btn-primary">Edit</a>
-                  <a href="{{route('Category.destroy',$device->id)}}" class="btn btn-danger">delete</a>
+                  <a href="{{route('Category.destroy',$device->id)}}" class="btn btn-danger" onclick="return confirm('Are you sure?')">delete</a>
              </td>
            </tr>
            @endforeach
        </table>
       @endsection
+
+
+
+  

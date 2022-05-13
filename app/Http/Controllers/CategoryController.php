@@ -102,7 +102,6 @@ class CategoryController extends BaseController
     public function update($id, Request $request)
     {
         $category = Category::find($id);
-        
         $category->name = $request->input('name');
         $category->update();
        

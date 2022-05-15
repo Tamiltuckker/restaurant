@@ -3,7 +3,6 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Frontend\CategoryController;
 use App\Http\Controllers\Frontend\HomeController;
 
 
@@ -22,7 +21,7 @@ use App\Http\Controllers\Frontend\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+     return view('welcome');
 });
 
 Auth::routes();

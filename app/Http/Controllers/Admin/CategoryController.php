@@ -88,12 +88,16 @@ class CategoryController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $update = ['name' => $request->name];
-        if ($files = $request->file('image')) {
-        $profileImage =  $files->store('uploads','public');
-        $update['image'] = "$profileImage";
-          }
-        Category::where('id',$id)->update($update);
+
+        $category = Category::find($id);
+        $category->name = $request->input('name');
+        $category->update();
+       
+        Attachment::where('attachmentable_id', $category->id)->delete();
+        $attachment = new Attachment;
+        $imagestore = ($request->file('image'))->store('uploads','public');
+        $attachment->attachmentable_image = $imagestore;
+        $category->image()->save($attachment);
         return redirect()->action([CategoryController::class, 'index'])->with('success','Update Successfully');
     }
 
@@ -105,6 +109,7 @@ class CategoryController extends Controller
      */
     public function destroy($id)
     {
+        // dd("hai");
          Category::find($id)->delete();
         return redirect()->action([CategoryController::class, 'index'])->with('success','deleted Successfully');
     }

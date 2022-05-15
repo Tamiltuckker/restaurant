@@ -89,7 +89,12 @@
                     <td class="text-end">
                         <a href="{{route('webadmin.categories.show',$device->id) }}" class="btn btn-light btn-sm me-2">View</a>
                         <a href="{{route('webadmin.categories.edit',$device->id)}}" class="btn btn-light btn-sm">Edit</a>
-                        <a href="{{route('webadmin.categories.destroy',$device->id)}}" class="btn btn-light btn-sm">Delete</a>
+                        <!-- <a href="{{route('webadmin.categories.destroy',$device->id)}}" class="btn btn-light btn-sm">Delete</a> -->
+                        <a><form action="{{ route('webadmin.categories.destroy', $device->id)}}" method="post">
+                            @method('DELETE')
+                            @csrf
+                        <input class="btn btn-light btn-sm" type="submit" value="Delete"/>
+                        </form></a>
                     </td>
                 </tr>
                 @endforeach

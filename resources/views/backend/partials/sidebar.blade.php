@@ -42,14 +42,6 @@
                                 <span class="menu-title">Default</span>
                             </a>
                         </div>
-                        <div class="menu-item">
-                            <a class="menu-link" href="../dist/dashboards/extended.html">
-                                <span class="menu-bullet">
-                                    <span class="bullet bullet-dot"></span>
-                                </span>
-                                <span class="menu-title">Extended</span>
-                            </a>
-                        </div>
                     </div>
                 </div>
                 <div class="menu-item pt-5">
@@ -90,14 +82,6 @@
                                             <span class="bullet bullet-dot"></span>
                                         </span>
                                         <span class="menu-title">Categories</span>
-                                    </a>
-                                </div>
-                                <div class="menu-item">
-                                    <a class="menu-link" href="../dist/pages/wizards/vertical.html">
-                                        <span class="menu-bullet">
-                                            <span class="bullet bullet-dot"></span>
-                                        </span>
-                                        <span class="menu-title">Vertical</span>
                                     </a>
                                 </div>
                             </div>

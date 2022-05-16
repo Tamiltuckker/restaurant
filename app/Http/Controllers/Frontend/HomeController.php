@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -16,7 +17,9 @@ class HomeController extends Controller
     {
         //
         $categories=Category::all();
-        return view('layouts.frontend.index',compact('categories'));
+        $products=Product::all();
+   
+        return view('layouts.frontend.index',compact('categories','products'));
     }
 
     /**
@@ -51,6 +54,9 @@ class HomeController extends Controller
         //
 
        $category = Category::find($id);
+     
+    //    dd($category);
+       
        return view('layouts.frontend.categoryview',compact('category'));
     }
 

@@ -4,8 +4,8 @@
     <div class="aside-logo flex-column-auto pt-9 pb-5" id="kt_aside_logo">
         <!--begin::Logo-->
         <a href="../dist/index.html">
-            <img alt="Logo" src="assets/media/logos/logo-default.svg" class="max-h-50px logo-default" />
-            <img alt="Logo" src="assets/media/logos/logo-minimize.svg" class="max-h-50px logo-minimize" />
+            <img alt="Logo" src="{{asset('assets/media/logos/logo-default.svg')}}" class="max-h-50px logo-default" />
+            <img alt="Logo" src="{{asset('assets/media/logos/logo-minimize.svg')}}" class="max-h-50px logo-minimize" />
         </a>
         <!--end::Logo-->
     </div>

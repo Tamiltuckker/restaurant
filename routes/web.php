@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Frontend\CategoryController;
+use App\Http\Controllers\Admin\CategoryController;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomeController;
 
 
@@ -20,12 +21,15 @@ use App\Http\Controllers\Frontend\HomeController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+     return view('welcome');
 });
 
 Auth::routes();
 
 
+Route::prefix('admin')->name('webadmin.')->group(function () {
+    Route::resource('categories', CategoryController::class);
+});
 Route::post('/Category', [App\Http\Controllers\CategoryController::class,'store'])->name('Category.store');
 Route::get('Category/edit/{id}', [App\Http\Controllers\CategoryController::class,'edit'])->name('Category.edit');
 Route::put('Category/update/{id}',[App\Http\Controllers\CategoryController::class,'update'])->name('Category.update');

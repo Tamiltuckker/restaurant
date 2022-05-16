@@ -128,7 +128,7 @@
                     <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                         @foreach ($categories as $category )
                         <li class="nav-item">
-                            <a href="{{ route('productcategory.show',$category->id) }}" >
+                            <a href="{{ route('productcategory.show',$category->slug) }}" >
                                  <img src="{{asset('/storage/'.$category->image->attachmentable_image)}}" height="30" width="50"/>
                                 <div class="ps-3">
                                     <small class="text-body">Popular</small>

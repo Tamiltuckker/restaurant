@@ -101,7 +101,7 @@
                         </a>
                     </div>
                     <div class="menu-item">
-                        <a class="menu-link" href="{{ route('webadmin.categories.index') }}">
+                        <a class="menu-link" href="{{ route('webadmin.products.index') }}">
                             <span class="menu-icon">
                                 <!--begin::Svg Icon | path: icons/duotune/abstract/abs027.svg-->
                                 <span class="svg-icon svg-icon-2">

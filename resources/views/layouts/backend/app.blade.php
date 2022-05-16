@@ -48,6 +48,7 @@
 		<script src="{{ asset('assets/plugins/custom/leaflet/leaflet.bundle.js') }}"></script>
 		<script src="{{ asset('assets/js/custom/modals/create-app.js') }}"></script>
 		<script src="{{ asset('assets/js/custom/modals/select-location.js') }}"></script>
+		<script src="{{ asset('assets/js/custom/apps/file-manager/settings.js') }}"></script> 
 		<script src="{{ asset('assets/js/custom/widgets.js') }}"></script>
 		<script src="{{ asset('assets/js/custom/apps/chat/chat.js') }}"></script>
 		<script src="{{ asset('assets/js/custom/modals/create-project.bundle.js') }}"></script>

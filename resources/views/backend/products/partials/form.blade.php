@@ -29,7 +29,7 @@
         <span class="fs-4 me-2 mb-2" placeholder="Minimum 30 characters">Description</span>
     </div>
     <div class="col-md-9">
-    <textarea class="form-control form-control-solid mb-9"  name="description" placeholder="Minimum 30 characters"   rows="4"></textarea>
+    {!! Form::textarea('description',null,['class'=>'form-control form-control-solid mb-9', 'rows' => 4, 'cols' => 60]) !!}
     </div>
 </div>
 

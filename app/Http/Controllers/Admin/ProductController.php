@@ -100,11 +100,13 @@ class ProductController extends Controller
         $product->name = $request->input('name');
         $product->update();
        
-        Attachment::where('attachmentable_id', $product->id)->delete();
-        $attachment = new Attachment;
-        $imagestore = ($request->file('image'))->store('uploads','public');
-        $attachment->attachmentable_image = $imagestore;
-        $product->image()->save($attachment);
+        if ($files = $request->file('image')) {
+            Attachment::where('attachmentable_id', $product->id)->delete();
+            $attachment = new Attachment;
+            $imagestore = ($request->file('image'))->store('uploads','public');
+            $attachment->attachmentable_image = $imagestore;
+            $product->image()->save($attachment);
+        }
         return redirect()->action([ProductController::class, 'index'])->with('success','Update Successfully');
     }
 

@@ -146,10 +146,10 @@
                 Swal.fire({
            
                   icon: 'success',
-                //     title: response,
-                //     showDenyButton: false,
-                //     showCancelButton: false,
-                //     confirmButtonText: 'Yes'
+                    // title: 'deleted succesfully',
+                    // showDenyButton: false,
+                    // showCancelButton: false,
+                    confirmButtonText: 'Ok'
                     }).then((result) => {
                      window.location='/admin/categories'
                 });

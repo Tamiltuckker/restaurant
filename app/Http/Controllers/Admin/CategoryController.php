@@ -111,10 +111,11 @@ class CategoryController extends Controller
      */
    
 
-    public function destroy( Category $Category)
+    public function destroy( $id)
     {
-        
-        $Category->delete();
+
+        Category::find($id)->delete();
+        Attachment ::where ('attachmentable_id', $id)->delete();
         return redirect()->action([CategoryController::class, 'index'])->with('success','deleted Successfully');
    
     }

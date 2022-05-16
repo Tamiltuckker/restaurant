@@ -128,14 +128,14 @@
                     <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                         @foreach ($categories as $category )
                         <li class="nav-item">
-                            <a class="d-flex align-items-center text-start mx-3 ms-0 pb-3 active" data-bs-toggle="pill" href="#tab-1">
-                                
-                                <img src="{{asset('/storage/'.$category->image->attachmentable_image)}}" height="30" width="50"/>
+                            <a href="{{ route('productcategory.show',$category->id) }}" >
+                                 <img src="{{asset('/storage/'.$category->image->attachmentable_image)}}" height="30" width="50"/>
                                 <div class="ps-3">
                                     <small class="text-body">Popular</small>
                                     <h6 class="mt-n1 mb-0">{{$category->name }}</h6>
                                 </div>
                             </a>
+                    </a>
                         </li>
                         @endforeach
                        

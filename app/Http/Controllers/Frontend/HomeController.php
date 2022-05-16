@@ -49,6 +49,9 @@ class HomeController extends Controller
     public function show($id)
     {
         //
+
+       $category = Category::find($id);
+       return view('layouts.frontend.categoryview',compact('category'));
     }
 
     /**

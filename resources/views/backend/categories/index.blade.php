@@ -151,7 +151,7 @@
                 //     showCancelButton: false,
                 //     confirmButtonText: 'Yes'
                     }).then((result) => {
-                     window.location='https://restaurant.local/admin/categories'
+                     window.location='/admin/categories'
                 });
               }
             

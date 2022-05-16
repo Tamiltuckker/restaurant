@@ -1,13 +1,29 @@
 @extends('layouts.backend.app')
-
+    <!-- SweetAlert2 -->
+    
+   
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    
 @push('css')
 <link href="{{asset('assets/plugins/custom/datatables/datatables.bundle.css')}}" rel="stylesheet" type="text/css" />
+
 @endpush
+
+
 
 @push('js')
 <script src="{{asset('assets/plugins/custom/datatables/datatables.bundle.js')}}"></script>
 <script src="{{asset('assets/js/custom/account/orders/classic.js')}}"></script>
+
 @endpush
+
+
+
+
 
 @section('content')
 <!--begin::Card-->
@@ -89,12 +105,10 @@
                     <td class="text-end">
                         <a href="{{route('webadmin.categories.show',$device->id) }}" class="btn btn-light btn-sm me-2">View</a>
                         <a href="{{route('webadmin.categories.edit',$device->id)}}" class="btn btn-light btn-sm">Edit</a>
-                        <!-- <a href="{{route('webadmin.categories.destroy',$device->id)}}" class="btn btn-light btn-sm">Delete</a> -->
-                        <a><form action="{{ route('webadmin.categories.destroy', $device->id)}}" method="post">
-                            @method('DELETE')
-                            @csrf
-                        <input class="btn btn-light btn-sm" type="submit" value="Delete"/>
-                        </form></a>
+                       <form method="post" class="delete-form" data-route="{{route('webadmin.categories.destroy',$device->id)}}">
+                            @method('delete')
+                            <button type="submit" class="btn btn-light btn-sm">Delete</button>
+                        </form>
                     </td>
                 </tr>
                 @endforeach
@@ -102,5 +116,51 @@
         </table>
     </div>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+
+      $('.delete-form').on('submit', function(e) {
+        e.preventDefault();
+        var button = $(this);
+
+        Swal.fire({
+          icon: 'warning',
+            title: 'Are you sure you want to delete this record?',
+            showDenyButton: false,
+            showCancelButton: true,
+            confirmButtonText: 'Yes'
+        }).then((result) => {
+          /* Read more about isConfirmed, isDenied below */
+          if (result.isConfirmed) {
+            $.ajax({
+              type: 'post',
+              headers: {
+                  'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+              },
+              url: button.data('route'),
+              data: {
+                '_method': 'delete'
+              },
+              success: function (response, textStatus, xhr) {
+                Swal.fire({
+           
+                  icon: 'success',
+                //     title: response,
+                //     showDenyButton: false,
+                //     showCancelButton: false,
+                //     confirmButtonText: 'Yes'
+                    }).then((result) => {
+                     window.location='https://restaurant.local/admin/categories'
+                });
+              }
+            
+            });
+          }
+        });
+        
+      })
+    });
+  </script>
 
 @endsection

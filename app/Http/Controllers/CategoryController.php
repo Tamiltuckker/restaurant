@@ -125,8 +125,25 @@ class CategoryController extends BaseController
     {
       
        
-        Category::find($id)->delete();
-        return redirect()->action([CategoryController::class, 'index'])->with('success','deleted Successfully');
+        // Category::find($id)->delete();
+        // return redirect()->action([CategoryController::class, 'index'])->with('success','deleted Successfully');
        
+
+        $delete = Category::where('id', $id)->delete();
+
+        // check data deleted or not
+        if ($delete == 1) {
+            $success = true;
+            $message = "User deleted successfully";
+        } else {
+            $success = true;
+            $message = "User not found";
+        }
+
+        //  Return response
+        return response()->json([
+            'success' => $success,
+            'message' => $message,
+        ]);
     }
 }

@@ -45,6 +45,7 @@ Route::get('Category/index', [App\Http\Controllers\CategoryController::class,'in
 
 
 Route::get('/dashboard/frontend',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('frontend.dashboard');
+Route::get('/category/{id}/show',[App\Http\Controllers\Frontend\HomeController::class,'show'])->name('productcategory.show');
 
 
 

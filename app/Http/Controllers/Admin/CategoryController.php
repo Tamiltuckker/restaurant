@@ -93,11 +93,13 @@ class CategoryController extends Controller
         $category->name = $request->input('name');
         $category->update();
        
-        Attachment::where('attachmentable_id', $category->id)->delete();
-        $attachment = new Attachment;
-        $imagestore = ($request->file('image'))->store('uploads','public');
-        $attachment->attachmentable_image = $imagestore;
-        $category->image()->save($attachment);
+        if ($files = $request->file('image')) {
+            Attachment::where('attachmentable_id', $category->id)->delete();
+            $attachment = new Attachment;
+            $imagestore = $files->store('uploads','public');
+            $attachment->attachmentable_image = $imagestore;
+            $category->image()->save($attachment);
+        }
         return redirect()->action([CategoryController::class, 'index'])->with('success','Update Successfully');
     }
 

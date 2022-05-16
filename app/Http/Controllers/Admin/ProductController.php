@@ -43,7 +43,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd("hai");
         $product= new Product();
         $product->name = $request->name;
         $product->category_id = $request->category_id;
@@ -98,6 +97,8 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->name = $request->input('name');
+        $product->price = $request->input('price');
+        $product->description = $request->input('description');;
         $product->update();
        
         if ($files = $request->file('image')) {

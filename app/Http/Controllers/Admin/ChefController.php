@@ -19,7 +19,7 @@ class ChefController extends Controller
     public function index()
     {
         $chefs = Chef::all();
-        return view('backend.chefs.index',compact('chefs'));
+        return view('backend.chefs.index', compact('chefs'));
     }
 
     /**
@@ -30,7 +30,7 @@ class ChefController extends Controller
     public function create()
     {
         $chef =   Chef::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        return view('backend.chefs.create',compact('chef'));
+        return view('backend.chefs.create', compact('chef'));
     }
 
     /**
@@ -41,20 +41,20 @@ class ChefController extends Controller
      */
     public function store(Request $request)
     {
-        $chef= new Chef();
+        $chef = new Chef();
         $chef->name = $request->name;
         $chef->slug = Str::slug($request->name);
         $chef->designation = $request->designation;
         $chef->save();
-        $id= $chef->id;
+        $id = $chef->id;
 
-        $attachment= Chef::find($id);
+        $attachment = Chef::find($id);
         $image = new Attachment();
-        $imagestore = ($request->file('image'))->store('uploads','public');
+        $imagestore = ($request->file('image'))->store('uploads', 'public');
         $image->attachmentable_image = $imagestore;
         $attachment->image()->save($image);
 
-        return redirect()->route('webadmin.chefs.index')->with('success','New chef added Successfully'); 
+        return redirect()->route('webadmin.chefs.index')->with('success', 'New chef added Successfully');
     }
 
     /**
@@ -66,7 +66,7 @@ class ChefController extends Controller
     public function show($id)
     {
         $chef = Chef::find($id);
-        return view('backend.chefs.show',compact('chef'));
+        return view('backend.chefs.show', compact('chef'));
     }
 
     /**
@@ -92,17 +92,18 @@ class ChefController extends Controller
     {
         $chef = Chef::find($id);
         $chef->name = $request->input('name');
+        $chef->slug = Str::slug($request->name);
         $chef->designation = $request->input('designation');
         $chef->update();
-       
+
         if ($files = $request->file('image')) {
             Attachment::where('attachmentable_id', $chef->id)->delete();
             $attachment = new Attachment;
-            $imagestore = ($request->file('image'))->store('uploads','public');
+            $imagestore = ($request->file('image'))->store('uploads', 'public');
             $attachment->attachmentable_image = $imagestore;
-            $chef->image()->save($attachment);  
+            $chef->image()->save($attachment);
         }
-        return redirect()->action([ChefController::class, 'index'])->with('success','Update Successfully');
+        return redirect()->action([ChefController::class, 'index'])->with('success', 'Update Successfully');
     }
 
     /**
@@ -114,6 +115,6 @@ class ChefController extends Controller
     public function destroy(Chef $Chef)
     {
         $Chef->delete();
-        return redirect()->action([ChefController::class, 'index'])->with('success','deleted Successfully');
+        return redirect()->action([ChefController::class, 'index'])->with('success', 'deleted Successfully');
     }
 }

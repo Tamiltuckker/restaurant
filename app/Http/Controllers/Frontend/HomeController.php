@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use App\Models\Chef;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,11 +16,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        //
+
         $categories=Category::all();
         $products=Product::all();
-   
-        return view('layouts.frontend.index',compact('categories','products'));
+        $chefs=Chef::all();
+         return view('layouts.frontend.index',compact('categories','products','chefs'));
     }
 
     /**
@@ -49,17 +50,31 @@ class HomeController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
-    {
-        //
+    
+     public function show($slug)
+     {
+         $category = Category::where('slug', $slug)->first();
+        return view('layouts.frontend.categoryview')->with('category', $category);
+      }
 
-       $category = Category::find($id);
-     
-    //    dd($category);
-       
-       return view('layouts.frontend.categoryview',compact('category'));
+    public function ourteam()
+    {
+        
+        $chefs=Chef::all();
+        return view('layouts.frontend.ourteam',compact('chefs'));
+
     }
 
+    public function aboutUs()
+    {
+        $chefs=Chef::all();
+        return view('layouts.frontend.aboutus',compact('chefs'));
+    }
+
+    public function booking()
+    {
+       return view('layouts.frontend.booking');
+    }
     /**
      * Show the form for editing the specified resource.
      *

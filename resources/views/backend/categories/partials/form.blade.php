@@ -3,7 +3,7 @@
         {{ Form::label('name', 'Name', array('class' => 'fs-6 fw-bold mt-2')) }}
     </div>
     <div class="col-md-9">
-    {{ Form::text('name', old('name'), ['class' => 'form-control form-control-solid']) }}
+    {{ Form::text('name', old('name'), ['class' => 'form-control form-control-solid', 'placeholder' => 'Category Name' ]) }}
     </div>
 </div>
 <div class="fv-row row mb-15">

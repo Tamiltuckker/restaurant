@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChefController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomeController;
 
@@ -33,6 +34,7 @@ Route::prefix('admin')->name('webadmin.')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('chefs', ChefController::class);
+    Route::resource('tags', TagController::class);
 });
 Route::post('/Category', [App\Http\Controllers\CategoryController::class,'store'])->name('Category.store');
 Route::get('Category/edit/{id}', [App\Http\Controllers\CategoryController::class,'edit'])->name('Category.edit');

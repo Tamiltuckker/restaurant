@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Attachment;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -31,7 +32,9 @@ class ProductController extends Controller
     {
         $categories = Category::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         $product =   Product::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
-        return view('backend.products.create',compact('categories','product'));
+        $tags =   Tag::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+
+        return view('backend.products.create',compact('categories','product','tags'));
 
     }
 
@@ -58,6 +61,8 @@ class ProductController extends Controller
         $image->attachmentable_image = $imagestore;
         $attachment->image()->save($image);
 
+        $product->tags()->sync($request->input('tags'));
+
         return redirect()->route('webadmin.products.index')->with('success','New Products added Successfully'); 
     }
 
@@ -83,7 +88,8 @@ class ProductController extends Controller
     {
         $categories = Category::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
         $product = Product::findOrFail($id);
-        return view('backend.products.edit', compact('product','categories'));
+        $tags =   Tag::all()->sortBy('name', SORT_NATURAL | SORT_FLAG_CASE)->pluck('name', 'id');
+        return view('backend.products.edit', compact('product','categories','tags'));
     }
 
     /**
@@ -108,6 +114,8 @@ class ProductController extends Controller
             $attachment->attachmentable_image = $imagestore;
             $product->image()->save($attachment);
         }
+        $product->tags()->sync($request->input('tags'));
+
         return redirect()->action([ProductController::class, 'index'])->with('success','Update Successfully');
     }
 

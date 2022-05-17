@@ -1,9 +1,9 @@
 <div class="fv-row row mb-15">
     <div class="col-md-3">
-        {{ Form::label('name', 'Product Name', array('class' => 'fs-6 fw-bold mt-2')) }}
+        {{ Form::label('name', 'Chef Name', array('class' => 'fs-6 fw-bold mt-2')) }}
     </div>
     <div class="col-md-9">
-    {{ Form::text('name', old('name'), ['class' => 'form-control form-control-solid','placeholder' => 'Chef name']) }}
+    {{ Form::text('name', old('name'), ['class' => 'form-control form-control-solid','placeholder' => 'Chef Name']) }}
     </div>
 </div>
 

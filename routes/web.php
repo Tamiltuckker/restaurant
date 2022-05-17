@@ -1,13 +1,10 @@
 <?php
-
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChefController;
 use App\Http\Controllers\Admin\ProductController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomeController;
-
-
 
 /*
 |--------------------------------------------------------------------------
@@ -28,27 +25,15 @@ Route::get('/', function () {
 
 Auth::routes();
 
-
 Route::prefix('admin')->name('webadmin.')->group(function () {
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('chefs', ChefController::class);
 });
-Route::post('/Category', [App\Http\Controllers\CategoryController::class,'store'])->name('Category.store');
-Route::get('Category/edit/{id}', [App\Http\Controllers\CategoryController::class,'edit'])->name('Category.edit');
-Route::put('Category/update/{id}',[App\Http\Controllers\CategoryController::class,'update'])->name('Category.update');
-Route::get('/Category/{id}/show', [App\Http\Controllers\CategoryController::class,'show'])->name('Category.show');
-Route::delete('/Category/delete/{id}', [App\Http\Controllers\CategoryController::class,'destroy'])->name('Category.destroy');
-Route::get('/Category/create', [App\Http\Controllers\CategoryController::class,'create'])->name('Category.create');
-Route::get('Category/index', [App\Http\Controllers\CategoryController::class,'index'])->name('Category.index');
-
-
-
-
 
 Route::get('/dashboard/frontend',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('frontend.dashboard');
-Route::get('/category/{id}/show',[App\Http\Controllers\Frontend\HomeController::class,'show'])->name('productcategory.show');
-
-
-
-
+Route::get('/category/{slug}',[App\Http\Controllers\Frontend\HomeController::class,'show'])->name('productcategory.show');
+Route::get('home', [App\Http\Controllers\Frontend\HomeController::class, 'home'])->name('home');
+Route::get('ourteam', [App\Http\Controllers\Frontend\HomeController::class, 'ourteam'])->name('ourteam');
+Route::get('about-us', [App\Http\Controllers\Frontend\HomeController::class, 'aboutUs'])->name('about.us');
+Route::get('booking', [App\Http\Controllers\Frontend\HomeController::class, 'booking'])->name('booking');

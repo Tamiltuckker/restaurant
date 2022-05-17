@@ -91,6 +91,7 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
         $category->name = $request->input('name');
+        $category->slug = Str::slug($request->name);
         $category->update();
        
         if ($files = $request->file('image')) {

@@ -97,6 +97,7 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $product->name = $request->input('name');
+        $product->slug = Str::slug($request->name);
         $product->price = $request->input('price');
         $product->description = $request->input('description');;
         $product->update();

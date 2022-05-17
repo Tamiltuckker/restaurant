@@ -127,6 +127,7 @@
                 <div class="tab-class text-center wow fadeInUp" data-wow-delay="0.1s">
                     <ul class="nav nav-pills d-inline-flex justify-content-center border-bottom mb-5">
                         @foreach ($categories as $category )
+                       
                         <li class="nav-item">
                             <a href="{{ route('productcategory.show',$category->id) }}" >
                                  <img src="{{asset('/storage/'.$category->image->attachmentable_image)}}" height="30" width="50"/>
@@ -159,27 +160,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                @endforeach
-
-                                
-                           
-                             
-                               
-                                
-                                
-                        
-                        <div id="tab-2" class="tab-pane fade show p-0">
-                            <div class="row g-4">
-                                
-                                
-                               
-                                
-                                
-                               
-                               
-                     
-                    </div>
-                </div>
+                                @endforeach    
             </div>
         </div>
         <!-- Menu End -->

@@ -58,8 +58,8 @@
                     <div class="navbar-nav ms-auto py-0 pe-4">
                         <a href="{{ route('frontend.dashboard')}}" class="nav-item nav-link active">Home</a>
                         <a href=" {{ route('about.us')}}" class="nav-item nav-link">About</a>
-                        <a href="service.html" class="nav-item nav-link">Service</a>
-                        <a href="menu.html" class="nav-item nav-link">Menu</a>
+                        <a href="{{ route('service')}}" class="nav-item nav-link">Service</a>
+                        <a href="{{ route('menu')}}" class="nav-item nav-link">Menu</a>
                         <div class="nav-item dropdown">
                             <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">Pages</a>
                             <div class="dropdown-menu m-0">

@@ -1,9 +1,17 @@
 <div class="fv-row row mb-15">
     <div class="col-md-3">
-        {{ Form::label('name', 'Name', array('class' => 'fs-6 fw-bold mt-2')) }}
+        {{ Form::label('title', 'Title', array('class' => 'fs-6 fw-bold mt-2')) }}
     </div>
     <div class="col-md-9">
-    {{ Form::text('name', old('name'), ['class' => 'form-control form-control-solid']) }}
+    {{ Form::text('title', old('title'), ['class' => 'form-control form-control-solid']) }}
+    </div>
+</div>
+<div class="fv-row row mb-15">
+    <div class="col-md-3">
+        <span class="fs-4 me-2 mb-2" placeholder="Minimum 30 characters">Description</span>
+    </div>
+    <div class="col-md-9">
+    {!! Form::textarea('description',null,['class'=>'form-control form-control-solid mb-9','placeholder' => 'Write Product Description...', 'rows' => 4, 'cols' => 60]) !!}
     </div>
 </div>
 <div class="fv-row row mb-15">

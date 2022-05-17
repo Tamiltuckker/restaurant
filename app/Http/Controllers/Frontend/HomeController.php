@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Frontend;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use App\Models\AboutUs;
 use App\Models\Chef;
 use App\Models\Product;
+use App\Models\Service;
+use App\Models\Content;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -20,7 +23,11 @@ class HomeController extends Controller
         $categories=Category::all();
         $products=Product::all();
         $chefs=Chef::all();
-         return view('layouts.frontend.index',compact('categories','products','chefs'));
+        $services=Service::all();
+        $contents=Content::all();
+        $abouts=AboutUs::all();
+  
+        return view('layouts.frontend.index',compact('categories','products','chefs','services','contents','abouts'));
     }
 
     /**
@@ -68,13 +75,28 @@ class HomeController extends Controller
     public function aboutUs()
     {
         $chefs=Chef::all();
-        return view('layouts.frontend.aboutus',compact('chefs'));
+        $abouts=AboutUs::all();
+        return view('layouts.frontend.aboutus',compact('chefs','abouts'));
     }
 
     public function booking()
     {
        return view('layouts.frontend.booking');
     }
+
+    public function service()
+    {
+        $services=Service::all();
+       return view('layouts.frontend.service',compact('services'));
+    }
+
+    public function menu()
+    {
+        $categories=Category::all();
+        $products=Product::all();
+       return view('layouts.frontend.menu',compact('categories','products'));
+    }
+
     /**
      * Show the form for editing the specified resource.
      *

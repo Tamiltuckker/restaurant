@@ -3,6 +3,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChefController;
 use App\Http\Controllers\Admin\ProductController;
+use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\TagController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomeController;
@@ -31,6 +32,8 @@ Route::prefix('admin')->name('webadmin.')->group(function () {
     Route::resource('products', ProductController::class);
     Route::resource('chefs', ChefController::class);
     Route::resource('tags', TagController::class);
+    Route::resource('tables', TableController::class);
+
 });
 
 Route::get('/dashboard/frontend',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('frontend.dashboard');
@@ -38,4 +41,6 @@ Route::get('/category/{slug}',[App\Http\Controllers\Frontend\HomeController::cla
 Route::get('home', [App\Http\Controllers\Frontend\HomeController::class, 'home'])->name('home');
 Route::get('ourteam', [App\Http\Controllers\Frontend\HomeController::class, 'ourteam'])->name('ourteam');
 Route::get('about-us', [App\Http\Controllers\Frontend\HomeController::class, 'aboutUs'])->name('about.us');
-Route::get('booking', [App\Http\Controllers\Frontend\HomeController::class, 'booking'])->name('booking');
+Route::get('bookings', [App\Http\Controllers\Frontend\HomeController::class, 'booking'])->name('booking');
+Route::post('bookings', [App\Http\Controllers\Frontend\HomeController::class, 'bookingStore'])->name('booking.store');
+

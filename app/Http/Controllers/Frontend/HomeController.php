@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 use App\Models\Category;
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\Chef;
 use App\Models\Product;
+use App\Models\Table;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -73,7 +75,30 @@ class HomeController extends Controller
 
     public function booking()
     {
-       return view('layouts.frontend.booking');
+    
+       $tablesDetails = Table::all();
+       
+        foreach ($tablesDetails as $key => $value)
+        {
+            $tables[] = $value->capacity;
+        }
+        // dd($table);
+       return view('layouts.frontend.booking',compact('tables'));
+    }
+    public function bookingStore(Request $request)
+    {
+        $booking= new Booking();
+        $booking->name = $request->name;
+        $booking->email = $request->email;
+        $booking->datetime  = date("Y-m-d H:i:s", strtotime(request('datetime')));
+        $booking->people_count = $request->people_count;
+        $booking->details = $request->details;
+        $booking->save();
+
+        return redirect()->route('booking')->with('success','Your table has been Booking Successfully'); 
+       
+      
+    //    return view('layouts.frontend.booking',compact('tables'));
     }
     /**
      * Show the form for editing the specified resource.

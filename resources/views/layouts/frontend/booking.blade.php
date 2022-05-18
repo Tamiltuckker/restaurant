@@ -40,19 +40,19 @@
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="text" class="form-control" name="name" id="name" placeholder="Your Name">
+                                        <input type="text" class="form-control" name="name" id="name" placeholder="Your Name" required>
                                         <label for="name">Your Name</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating">
-                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email">
+                                        <input type="email" class="form-control" name="email" id="email" placeholder="Your Email" required>
                                         <label for="email">Your Email</label>
                                     </div>
                                 </div>
                                 <div class="col-md-6">
                                     <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" name="date" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                                    <input type="text" class="form-control datetimepicker-input" name="date" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" required />
                                         <label for="datetime">Date</label>
                                     </div>
                                 </div>

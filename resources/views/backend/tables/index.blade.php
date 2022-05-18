@@ -15,14 +15,25 @@
     <div id="kt_project_users_card_pane" class="tab-pane fade show active">
         <div class="row g-6 g-xl-9">
         @foreach ($tables as $table)
+            @if($bookingCount < 10)
             <div class="col-md-6 col-xxl-4">
-                <div class="card">
+                <div class="card bg-info">
                     <div class="card-body d-flex flex-center flex-column pt-12 p-9">
                         <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-boldest mb-1">{{$table->name}}</a>
                         <div class="fs-5 fw-bold text-gray-400 mb-6"> {{$table->capacity}} Persons</div>
                     </div>
                 </div>
             </div>
+            @else
+            <div class="col-md-6 col-xxl-4">
+                <div class="card bg-info">
+                    <div class="card-body d-flex flex-center flex-column pt-12 p-9">
+                        <a href="#" class="fs-3 text-gray-800 text-hover-primary fw-boldest mb-1">{{$table->name}}</a>
+                        <div class="fs-5 fw-bold text-gray-400 mb-6"> {{$table->capacity}} Persons</div>
+                    </div>
+                </div>
+            </div>
+            @endif
         @endforeach
     </div>
 </div>

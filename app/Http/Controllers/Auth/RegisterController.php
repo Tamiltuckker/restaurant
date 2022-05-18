@@ -8,6 +8,14 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Booking;
+use App\Models\Category;
+use App\Models\Chef;
+use App\Models\Product;
+use App\Models\Table;
+use App\Models\AboutUs;
+use App\Models\Service;
+use App\Models\Content;
 
 class RegisterController extends Controller
 {
@@ -64,10 +72,14 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);
+
+        $user->syncRoles('user');
+        return $user;
     }
+           
 }

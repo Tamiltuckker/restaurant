@@ -83,14 +83,14 @@ class HomeController extends Controller
 
     public function booking()
     {
-    
+  
        $tablesDetails = Table::all();
        
         foreach ($tablesDetails as $key => $value)
         {
             $tables[] = $value->capacity;
         }
-        // dd($table);
+        // dd($tables);
        return view('layouts.frontend.booking',compact('tables'));
     }
     public function bookingStore(Request $request)

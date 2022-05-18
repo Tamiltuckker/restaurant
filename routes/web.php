@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\ProductController;
 use App\Http\Controllers\Admin\TableController;
 use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ServiceController;
+use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UserController;
+// use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomeController;
 
@@ -49,3 +52,9 @@ Route::post('bookings', [App\Http\Controllers\Frontend\HomeController::class, 'b
 Route::get('service', [App\Http\Controllers\Frontend\HomeController::class, 'service'])->name('service');
 Route::get('menu', [App\Http\Controllers\Frontend\HomeController::class, 'menu'])->name('menu');
 
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::group(['middleware' => ['auth']], function() {
+    Route::resource('roles', RoleController::class);
+    Route::resource('users', UserController::class);
+});

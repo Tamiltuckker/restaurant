@@ -42,9 +42,8 @@ Route::get('/category/{slug}',[App\Http\Controllers\Frontend\HomeController::cla
 Route::get('home', [App\Http\Controllers\Frontend\HomeController::class, 'home'])->name('home');
 Route::get('ourteam', [App\Http\Controllers\Frontend\HomeController::class, 'ourteam'])->name('ourteam');
 Route::get('about-us', [App\Http\Controllers\Frontend\HomeController::class, 'aboutUs'])->name('about.us');
-Route::get('bookings', [App\Http\Controllers\Frontend\HomeController::class, 'booking'])->name('booking');
-Route::post('bookings', [App\Http\Controllers\Frontend\HomeController::class, 'bookingStore'])->name('booking.store');
 Route::get('booking', [App\Http\Controllers\Frontend\HomeController::class, 'booking'])->name('booking');
+Route::post('bookings', [App\Http\Controllers\Frontend\HomeController::class, 'bookingStore'])->name('booking.store');
 Route::get('service', [App\Http\Controllers\Frontend\HomeController::class, 'service'])->name('service');
 Route::get('menu', [App\Http\Controllers\Frontend\HomeController::class, 'menu'])->name('menu');
 

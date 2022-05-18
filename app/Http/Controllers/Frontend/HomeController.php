@@ -11,6 +11,7 @@ use App\Models\AboutUs;
 use App\Models\Service;
 use App\Models\Content;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
@@ -83,30 +84,33 @@ class HomeController extends Controller
 
     public function booking()
     {
-    
-       $tablesDetails = Table::all();
-       
+
+        $tablesDetails = Table::all();
         foreach ($tablesDetails as $key => $value)
         {
             $tables[] = $value->capacity;
         }
-        // dd($table);
        return view('layouts.frontend.booking',compact('tables'));
     }
     public function bookingStore(Request $request)
     {
-        $booking= new Booking();
-        $booking->name = $request->name;
-        $booking->email = $request->email;
-        $booking->datetime  = date("Y-m-d H:i:s", strtotime(request('datetime')));
-        $booking->people_count = $request->people_count;
-        $booking->details = $request->details;
-        $booking->save();
-
-        return redirect()->route('booking')->with('success','Your table has been Booking Successfully'); 
-       
-      
-    //    return view('layouts.frontend.booking',compact('tables'));
+        $bookingCount = Booking::where('date', '>' ,DB::raw('DATE_SUB(NOW(), INTERVAL 1 DAY)'))->count();
+        if($bookingCount > 10)
+        {
+            $booking= new Booking();
+            $booking->name = $request->name;
+            $booking->email = $request->email;
+            $booking->date  = date("Y-m-d", strtotime(request('date')));
+            $booking->people_count = $request->people_count;
+            $booking->details = $request->details;
+            $booking->save();
+            return redirect()->route('booking')->with('success','Your table has been Booking Successfully');   
+        }
+        else
+        {   
+            return redirect()->route('booking')->with('success','Sorry All Tables booked Today, Kindly Choose to another Date');   
+        }
+        
     }
 
     public function service()

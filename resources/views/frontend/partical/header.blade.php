@@ -69,7 +69,20 @@
                             </div>
                         </div>
                         <a href="contact.html" class="nav-item nav-link">Contact</a>
+                        <div class="nav-item dropdown">
+                            <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">{{Auth::user()->name}} </a>
+                            <div class="dropdown-menu m-0">
+                               
+                                <a href="{{ route('myprofile') }}" class="dropdown-item">My profile</a>
+                                <a href="{{ route('changepassword.form') }}" class="dropdown-item">change password</a>
+                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">Sign Out</a>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                                            @csrf
+                                </form>
+                            </div>
+                        </div>
                     </div>
+                   
                     <a href="{{route('booking')}}" class="btn btn-primary py-2 px-4">Book A Table</a>
                  </div>
             </nav>

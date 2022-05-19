@@ -121,9 +121,10 @@ class HomeController extends Controller
 
     public function menu()
     {
+     
         $categories=Category::all();
         $products=Product::all();
-       return view('layouts.frontend.menu',compact('categories','products'));
+        return view('layouts.frontend.menu',compact('categories','products'));
     }
 
     /**

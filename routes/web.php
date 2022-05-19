@@ -8,9 +8,11 @@ use App\Http\Controllers\Admin\TagController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\RoleController;
 use App\Http\Controllers\Admin\UserController;
+
 // use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\ChangePasswordController;
 
 /*
 |--------------------------------------------------------------------------
@@ -49,10 +51,16 @@ Route::get('booking', [App\Http\Controllers\Frontend\HomeController::class, 'boo
 Route::post('bookings', [App\Http\Controllers\Frontend\HomeController::class, 'bookingStore'])->name('booking.store');
 Route::get('service', [App\Http\Controllers\Frontend\HomeController::class, 'service'])->name('service');
 Route::get('menu', [App\Http\Controllers\Frontend\HomeController::class, 'menu'])->name('menu');
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+// Route::get('menu', [App\Http\Controllers\Frontend\UserController::class, 'menu'])->name('menu');
+
+Route::get('changepassword', [App\Http\Controllers\Frontend\ChangePasswordController::class,'index'])->name('changepassword.form');
+Route::post('change-password', [App\Http\Controllers\Frontend\ChangePasswordController::class, 'store'])->name('change.password');
+Route::get('myprofile', [App\Http\Controllers\Frontend\ChangePasswordController::class, 'view'])->name('myprofile');
 
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+
 });

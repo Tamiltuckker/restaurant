@@ -95,7 +95,7 @@ class HomeController extends Controller
     public function bookingStore(Request $request)
     {
         $bookingCount = Booking::where('date', '>' ,DB::raw('DATE_SUB(NOW(), INTERVAL 1 DAY)'))->count();
-        if($bookingCount > 10)
+        if($bookingCount < 10)
         {
             $booking= new Booking();
             $booking->name = $request->name;

@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
-use App\Models\Table;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
-class TableController extends Controller
+class BookingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,9 +15,8 @@ class TableController extends Controller
      */
     public function index()
     {
-        $tables = Table::all();
-        $bookingCount = Booking::where('date', '>' ,DB::raw('DATE_SUB(NOW(), INTERVAL 1 DAY)'))->count();
-        return view('backend.tables.index',compact('tables','bookingCount'));
+        $bookings = Booking::all();
+        return view('backend.bookings.index', compact('bookings'));
     }
 
     /**

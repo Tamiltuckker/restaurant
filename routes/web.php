@@ -1,4 +1,5 @@
 <?php
+use App\Http\Controllers\Admin\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ChefController;
@@ -40,6 +41,7 @@ Route::prefix('admin')->name('webadmin.')->group(function () {
     Route::resource('tags', TagController::class);
     Route::resource('tables', TableController::class);
     Route::resource('services', ServiceController::class);
+    Route::resource('bookings', BookingController::class);
 });
 
 Route::get('/dashboard/frontend',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('frontend.dashboard');

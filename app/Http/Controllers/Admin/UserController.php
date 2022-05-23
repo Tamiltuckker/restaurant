@@ -129,4 +129,18 @@ class UserController extends Controller
         return redirect()->route('users.index')
                         ->with('success','User deleted successfully');
     }
+
+    public function impersonate(User $user) 
+    {
+        auth()->user()->impersonate($user);
+
+        return redirect()->route('home');
+    }
+
+    public function leaveImpersonate() 
+    {
+        auth()->user()->leaveImpersonation();
+
+        return redirect()->route('home'); 
+    }
 }

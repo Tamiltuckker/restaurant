@@ -35,6 +35,8 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::prefix('admin')->name('webadmin.')->group(function () {
+    Route::get('/{user}/impersonate',[App\Http\Controllers\Admin\UserController::class,'impersonate'])->name('users.impersonate');
+    Route::get('/leave-impersonate',[App\Http\Controllers\Admin\UserController::class,'leaveImpersonate'])->name('users.leaveimpersonate');
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
     Route::resource('chefs', ChefController::class);

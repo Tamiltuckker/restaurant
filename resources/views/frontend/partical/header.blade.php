@@ -79,6 +79,11 @@
                                 <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                                             @csrf
                                 </form>
+                                @auth
+                                    @if(session('impersonated_by'))
+                                        <a href="{{ route('webadmin.users.leaveimpersonate') }}" class="dropdown-item">Leave Impersonation</a>
+                                    @endif
+                                 @endauth
                             </div>
                         </div>
                     </div>

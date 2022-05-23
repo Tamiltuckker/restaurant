@@ -17,7 +17,7 @@ class CreateBookingsTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->timestamp('datetime')->nullable();
+            $table->date('date')->nullable();
             $table->integer('people_count')->nullable();
             $table->string('details')->nullable();
             $table->timestamps();

@@ -40,11 +40,12 @@ class ServiceController extends Controller
     {
        
         $service = new Service();
+       
         $service->title = $request->title;
         $service->description = $request->description;
         $service->save();
         $id = $service->id;
-
+// dd($service);
         $attachment = Service::find($id);
         $image = new Attachment();
         $imagestore = ($request->file('image'))->store('uploads', 'public');

@@ -13,9 +13,9 @@ class ChangeDatatypeBookingTable extends Migration
      */
     public function up()
     {
-        Schema::table('bookings', function (Blueprint $table) {
-            $table->date('date')->change();
-        });
+        // Schema::table('bookings', function (Blueprint $table) {
+        //     $table->date('date')->change();
+        // });
     }
 
     /**

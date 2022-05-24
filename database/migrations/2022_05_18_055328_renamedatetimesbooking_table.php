@@ -13,10 +13,10 @@ class RenamedatetimesbookingTable extends Migration
      */
     public function up()
     {
-        Schema::table('bookings', function (Blueprint $table) {
-            $table->renameColumn('datetime','date');
-            $table->date('date')->change();
-         });
+        // Schema::table('bookings', function (Blueprint $table) {
+        //     $table->renameColumn('datetime','date');
+        //     $table->date('date')->change();
+        //  });
     }
 
     /**

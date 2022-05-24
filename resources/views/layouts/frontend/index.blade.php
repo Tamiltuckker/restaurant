@@ -5,10 +5,9 @@
         <div class="row align-items-center g-5">
             <div class="col-lg-6 text-center text-lg-start">
                 @foreach ($contents as $content)
-                    <h1 class="display-3 text-white animated slideInLeft">{{ $content->title }}</h1>
-                    <p class="text-white animated slideInLeft mb-4 pb-2">{{ $content->body }}</p>
-                    <a href="{{ route('booking') }}"
-                        class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
+                <h1 class="display-3 text-white animated slideInLeft">{{ $content->title }}</h1>
+                <p class="text-white animated slideInLeft mb-4 pb-2">{{ $content->body }}</p>
+                <a href="{{ route('booking') }}" class="btn btn-primary py-sm-3 px-sm-5 me-3 animated slideInLeft">Book A Table</a>
                 @endforeach
             </div>
             <div class="col-lg-6 text-center text-lg-end overflow-hidden">
@@ -26,16 +25,16 @@
     <div class="container">
         <div class="row g-4">
             @foreach ($services as $service)
-                <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="service-item rounded pt-3">
-                        <div class="p-4">
-                            {{-- <img src="{{asset('/storage/'.$service->image->attachmentable_image)}}" height="50" width="50"/> --}}
-                            {{-- <i class="fa fa-3x fa-user-tie text-primary mb-4"></i> --}}
-                            <h5>{{ $service->title }}</h5>
-                            <p>{{ $service->description }}</p>
-                        </div>
+            <div class="col-lg-3 col-sm-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="service-item rounded pt-3">
+                    <div class="p-4">
+                        {{-- <img src="{{asset('/storage/'.$service->image->attachmentable_image)}}" height="50" width="50"/> --}}
+                        {{-- <i class="fa fa-3x fa-user-tie text-primary mb-4"></i> --}}
+                        <h5>{{ $service->title }}</h5>
+                        <p>{{ $service->description }}</p>
                     </div>
                 </div>
+            </div>
             @endforeach
         </div>
     </div>
@@ -50,30 +49,26 @@
             <div class="col-lg-6">
                 <div class="row g-3">
                     <div class="col-6 text-start">
-                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s"
-                            src="{{ asset('frontend/img/about-1.jpg') }}">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.1s" src="{{ asset('frontend/img/about-1.jpg') }}">
                     </div>
                     <div class="col-6 text-start">
-                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s"
-                            src="{{ asset('frontend/img/about-2.jpg') }}" style="margin-top: 25%;">
+                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.3s" src="{{ asset('frontend/img/about-2.jpg') }}" style="margin-top: 25%;">
                     </div>
                     <div class="col-6 text-end">
-                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s"
-                            src="{{ asset('frontend/img/about-3.jpg') }}">
+                        <img class="img-fluid rounded w-75 wow zoomIn" data-wow-delay="0.5s" src="{{ asset('frontend/img/about-3.jpg') }}">
                     </div>
                     <div class="col-6 text-end">
-                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s"
-                            src="{{ asset('frontend/img/about-4.jpg') }}">
+                        <img class="img-fluid rounded w-100 wow zoomIn" data-wow-delay="0.7s" src="{{ asset('frontend/img/about-4.jpg') }}">
                     </div>
                 </div>
             </div>
             <div class="col-lg-6">
                 <h5 class="section-title ff-secondary text-start text-primary fw-normal">About Us</h5>
                 @foreach ($abouts as $about)
-                    {{-- <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Restoran</h1> --}}
-                    <h1 class="mb-4">{{ $about->title }}</h1>
-                    <p class="mb-4">{{ $about->body }}</p>
-                    <p class="mb-4">{{ $about->body }}</p>
+                {{-- <h1 class="mb-4">Welcome to <i class="fa fa-utensils text-primary me-2"></i>Restoran</h1> --}}
+                <h1 class="mb-4">{{ $about->title }}</h1>
+                <p class="mb-4">{{ $about->body }}</p>
+                <p class="mb-4">{{ $about->body }}</p>
                 @endforeach
                 <div class="row g-4 mb-4">
                     <div class="col-sm-6">
@@ -108,38 +103,26 @@
     <div id="tab-1" class="tab-pane fade show p-0 active">
         <div class="row g-4">
             @foreach ($products as $product)
-                {{-- @dd($product); --}}
-                <div class="col-lg-6">
-                    <div class="d-flex align-items-center">
-                        <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
-                            @csrf
-
-                            <img src="{{ asset('/storage/' . $product->image->attachmentable_image) }}"
-                                class="flex-shrink-0 img-fluid rounded" alt="" style="width: 80px;" />
-                            <div class="w-100 d-flex flex-column text-start ps-4">
-                                <h5 class="d-flex justify-content-between border-bottom pb-2">
-                                    <span>{{ $product->name }}</span>
-                                    <span class="text-primary">Rs.{{ $product->price }}</span>
-                                    <form action="{{ route('cart.store') }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="hidden" value="{{ $product->id }}" name="id">
-                                        <input type="hidden" value="{{ $product->name }}" name="name">
-                                        <input type="hidden" value="{{ $product->price }}" name="price">
-                                        <input type="hidden" value="{{ $product->image }}" name="image">
-                                        <input type="hidden" value="1" name="quantity">
-
-                                        <small class="fst-italic">{{ $product->description }}</small>
-                                        <button class="px-4 py-2 text-white bg-blue-800 rounded">Add To Cart</button>
-                                    </form>
-
-                            </div>
-
-
-
+            <div class="col-lg-6">
+                <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                    @csrf
+                    <img src="{{ asset('/storage/' . $product->image->attachmentable_image) }}" class="flex-shrink-0 img-fluid rounded" alt="" style="width: 80px;" />
+                    <div class="w-100 d-flex flex-column text-start ps-4">
+                        <h5 class="d-flex justify-content-between border-bottom pb-2">
+                            <span>{{ $product->name }}</span>
+                            <span class="text-primary">Rs.{{ $product->price }}</span>
+                            <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <input type="hidden" value="{{ $product->id }}" name="id">
+                                <input type="hidden" value="{{ $product->name }}" name="name">
+                                <input type="hidden" value="{{ $product->price }}" name="price">
+                                <input type="hidden" value="{{ $product->image }}" name="image">
+                                <input type="hidden" value="1" name="quantity">
+                                <small class="fst-italic">{{ $product->description }}</small>
+                                <button class="btn-warning rounded">Add To Cart</button>
+                            </form>
                     </div>
-
-                </div>
+            </div>
             @endforeach
         </div>
     </div>
@@ -150,8 +133,7 @@
         <div class="row g-0">
             <div class="col-md-6">
                 <div class="video">
-                    <button type="button" class="btn-play" data-bs-toggle="modal"
-                        data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
+                    <button type="button" class="btn-play" data-bs-toggle="modal" data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal">
                         <span></span>
                     </button>
                 </div>
@@ -176,8 +158,7 @@
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating date" id="date3" data-target-input="nearest">
-                                    <input type="text" class="form-control datetimepicker-input" id="datetime"
-                                        placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
+                                    <input type="text" class="form-control datetimepicker-input" id="datetime" placeholder="Date & Time" data-target="#date3" data-toggle="datetimepicker" />
                                     <label for="datetime">Date & Time</label>
                                 </div>
                             </div>
@@ -217,8 +198,7 @@
                 <div class="modal-body">
                     <!-- 16:9 aspect ratio -->
                     <div class="ratio ratio-16x9">
-                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen
-                            allowscriptaccess="always" allow="autoplay"></iframe>
+                        <iframe class="embed-responsive-item" src="" id="video" allowfullscreen allowscriptaccess="always" allow="autoplay"></iframe>
                     </div>
                 </div>
             </div>
@@ -236,26 +216,23 @@
             </div>
             <div class="row g-4">
                 @foreach ($chefs as $chef)
-                    {{-- @dd($chef); --}}
-                    <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
-                        <div class="team-item text-center rounded overflow-hidden">
-                            <div class="rounded-circle overflow-hidden m-4">
-                                {{-- <img class="img-fluid" src="{{asset('/storage/'.$chef->image->attachmentable_image)}}" alt="" height="30" width="50"> --}}
-                                <img class="img-fluid"
-                                    src="{{ asset('/storage/' . $chef->image->attachmentable_image) }}" alt="">
-                            </div>
-                            <h5 class="mb-0">{{ $chef->name }}</h5>
-                            <small>{{ $chef->designation }}</small>
-                            <div class="d-flex justify-content-center mt-3">
-                                <a class="btn btn-square btn-primary mx-1" href=""><i
-                                        class="fab fa-facebook-f"></i></a>
-                                <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
-                                <a class="btn btn-square btn-primary mx-1" href=""><i
-                                        class="fab fa-instagram"></i></a>
-                            </div>
+                {{-- @dd($chef); --}}
+                <div class="col-lg-3 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="team-item text-center rounded overflow-hidden">
+                        <div class="rounded-circle overflow-hidden m-4">
+                            {{-- <img class="img-fluid" src="{{asset('/storage/'.$chef->image->attachmentable_image)}}" alt="" height="30" width="50"> --}}
+                            <img class="img-fluid" src="{{ asset('/storage/' . $chef->image->attachmentable_image) }}" alt="">
                         </div>
-
+                        <h5 class="mb-0">{{ $chef->name }}</h5>
+                        <small>{{ $chef->designation }}</small>
+                        <div class="d-flex justify-content-center mt-3">
+                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-square btn-primary mx-1" href=""><i class="fab fa-instagram"></i></a>
+                        </div>
                     </div>
+
+                </div>
                 @endforeach
             </div>
         </div>
@@ -276,8 +253,7 @@
                     <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
                     </p>
                     <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                            src="{{ asset('frontend/img/testimonial-1.jpg') }}" style="width: 50px; height: 50px;">
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('frontend/img/testimonial-1.jpg') }}" style="width: 50px; height: 50px;">
                         <div class="ps-3">
                             <h5 class="mb-1">Client Name</h5>
                             <small>Profession</small>
@@ -289,8 +265,7 @@
                     <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
                     </p>
                     <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                            src="{{ asset('frontend/img/testimonial-2.jpg') }}" style="width: 50px; height: 50px;">
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('frontend/img/testimonial-2.jpg') }}" style="width: 50px; height: 50px;">
                         <div class="ps-3">
                             <h5 class="mb-1">Client Name</h5>
                             <small>Profession</small>
@@ -302,8 +277,7 @@
                     <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
                     </p>
                     <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                            src="{{ asset('frontend/img/testimonial-3.jpg') }}" style="width: 50px; height: 50px;">
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('frontend/img/testimonial-3.jpg') }}" style="width: 50px; height: 50px;">
                         <div class="ps-3">
                             <h5 class="mb-1">Client Name</h5>
                             <small>Profession</small>
@@ -315,8 +289,7 @@
                     <p>Dolor et eos labore, stet justo sed est sed. Diam sed sed dolor stet amet eirmod eos labore diam
                     </p>
                     <div class="d-flex align-items-center">
-                        <img class="img-fluid flex-shrink-0 rounded-circle"
-                            src="{{ asset('frontend/img/testimonial-4.jpg') }}" style="width: 50px; height: 50px;">
+                        <img class="img-fluid flex-shrink-0 rounded-circle" src="{{ asset('frontend/img/testimonial-4.jpg') }}" style="width: 50px; height: 50px;">
                         <div class="ps-3">
                             <h5 class="mb-1">Client Name</h5>
                             <small>Profession</small>
@@ -330,4 +303,3 @@
     <!-- Testimonial End -->
 
     @include('frontend.partical.footer')
-

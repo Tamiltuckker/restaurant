@@ -35,7 +35,6 @@
 
             </div>
         </header>
-
         <main class="my-8">
             @yield('content')
         </main>

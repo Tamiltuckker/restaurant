@@ -58,7 +58,13 @@ Route::get('service', [App\Http\Controllers\Frontend\HomeController::class, 'ser
 Route::get('menu', [App\Http\Controllers\Frontend\HomeController::class, 'menu'])->name('menu');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-// Route::get('menu', [App\Http\Controllers\Frontend\UserController::class, 'menu'])->name('menu');
+// cart
+
+// Route::get('cart', [App\Http\Controllers\Frontend\CartController::class, 'cartList'])->name('cart.list');
+Route::post('cart', [App\Http\Controllers\Frontend\CartController::class, 'addToCart'])->name('cart.store');
+// Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updateCart'])->name('cart.update');
+Route::post('remove', [App\Http\Controllers\Frontend\CartController::class, 'removeFromCart'])->name('cart.remove');
+Route::post('clear', [App\Http\Controllers\Frontend\CartController::class, 'clearCart'])->name('cart.clear');
 
 Route::get('changepassword', [App\Http\Controllers\Frontend\ChangePasswordController::class,'index'])->name('changepassword.form');
 Route::post('change-password', [App\Http\Controllers\Frontend\ChangePasswordController::class, 'store'])->name('change.password');
@@ -67,5 +73,4 @@ Route::get('myprofile', [App\Http\Controllers\Frontend\ChangePasswordController:
 Route::group(['middleware' => ['auth']], function() {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
-
 });

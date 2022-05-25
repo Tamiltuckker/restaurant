@@ -60,7 +60,7 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 // cart
 
-// Route::get('cart', [App\Http\Controllers\Frontend\CartController::class, 'cartList'])->name('cart.list');
+Route::get('cartlist', [App\Http\Controllers\Frontend\CartController::class, 'cartList'])->name('cart.list');
 Route::post('cart', [App\Http\Controllers\Frontend\CartController::class, 'addToCart'])->name('cart.store');
 // Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updateCart'])->name('cart.update');
 Route::post('remove', [App\Http\Controllers\Frontend\CartController::class, 'removeFromCart'])->name('cart.remove');

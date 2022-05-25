@@ -137,9 +137,17 @@
                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
                                         <span>{{$product->name}}</span>
                                         <span class="text-primary">Rs.{{$product->price}}</span>
+                                        <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
+                                            @csrf
+                                            <input type="hidden" value="{{ $product->id }}" name="id">
+                                            <input type="hidden" value="{{ $product->name }}" name="name">
+                                            <input type="hidden" value="{{ $product->price }}" name="price">
+                                            <input type="hidden" value="{{ $product->image }}" name="image">
+                                            <input type="hidden" value="1" name="quantity">
+                                            <small class="fst-italic">{{ $product->description }}</small>
+                                            <button class="btn-warning rounded">Add To Cart</button>
+                                        </form>
                                     </h5>
-                                    <small class="fst-italic">{{$product->description}}</small>
-                                    <button type="submit" class="btn-primary mt-3 col-md-3">Add to Cart</button>
                                 </div>
                             </div>
                         </form>

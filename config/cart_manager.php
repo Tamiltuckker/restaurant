@@ -8,14 +8,14 @@ return [
     'auth_guard' => 'web',
 
     // Shipping charges are applied on order amount (subtotal - discount)
-    'shipping_charges' => 10,
+    'shipping_charges' => 0,
 
     // Specify the minimum order amount to avoid shipping charges
-    'shipping_charges_threshold' => 100,
+    'shipping_charges_threshold' => 0,
 
     // Tax amount is applied on net total (subtotal - discount + shipping charges)
     // subtotal, tax, net total and total are rounded to 2 decimals
-    'tax_percentage' => 6,
+    'tax_percentage' => 0,
 
     // Round off the total amount (net total + tax) to nearest (0 or 0.05 or 0.1 or 0.5 or 1)
     // Total amount is rounded off accordingly to come up the payable amount by the customer

@@ -58,7 +58,7 @@ class HomeController extends Controller
             $services=Service::all();
             $contents=Content::all();
             $abouts=AboutUs::all();
-            return view('layouts.frontend.index',compact('categories','products','chefs','services','contents','abouts'));
+            return view('frontend.home',compact('categories','products','chefs','services','contents','abouts'));
            break;
         }
     }

@@ -29,14 +29,14 @@ class ChangePasswordController extends Controller
     public function index()
     {
     
-        return view('layouts.frontend.changepassword');
+        return view('frontend.changepassword');
     } 
    
 
     public function view()
     {
     
-        return view('layouts.frontend.userprofile');
+        return view('frontend.userprofile');
     }
     /**
      * Show the application dashboard.
@@ -53,6 +53,6 @@ class ChangePasswordController extends Controller
    
         User::find(auth()->user()->id)->update(['password'=> Hash::make($request->new_password)]);
    
-        dd('Password change successfully.');
+        return view('frontend.changepassword')->with('success','New category added Successfully'); 
     }
 }

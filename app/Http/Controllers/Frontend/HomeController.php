@@ -30,7 +30,7 @@ class HomeController extends Controller
         $contents=Content::all();
         $abouts=AboutUs::all();
   
-        return view('layouts.frontend.index',compact('categories','products','chefs','services','contents','abouts'));
+        return view('frontend.home',compact('categories','products','chefs','services','contents','abouts'));
     }
 
     /**
@@ -64,14 +64,14 @@ class HomeController extends Controller
      public function show($slug)
      {
          $category = Category::where('slug', $slug)->first();
-        return view('layouts.frontend.categoryview')->with('category', $category);
+        return view('frontend.categoryview')->with('category', $category);
       }
 
     public function ourteam()
     {
         
         $chefs=Chef::all();
-        return view('layouts.frontend.ourteam',compact('chefs'));
+        return view('frontend.ourteam',compact('chefs'));
 
     }
 
@@ -79,7 +79,8 @@ class HomeController extends Controller
     {
         $chefs=Chef::all();
         $abouts=AboutUs::all();
-        return view('layouts.frontend.aboutus',compact('chefs','abouts'));
+     
+        return view('frontend.aboutus',compact('chefs','abouts'));
     }
 
     public function booking()
@@ -90,7 +91,7 @@ class HomeController extends Controller
         {
             $tables[] = $value->capacity;
         }
-       return view('layouts.frontend.booking',compact('tables'));
+       return view('frontend.booking',compact('tables'));
     }
     public function bookingStore(Request $request)
     {
@@ -116,7 +117,7 @@ class HomeController extends Controller
     public function service()
     {
         $services=Service::all();
-       return view('layouts.frontend.service',compact('services'));
+       return view('frontend.service',compact('services'));
     }
 
     public function menu()
@@ -124,7 +125,7 @@ class HomeController extends Controller
      
         $categories=Category::all();
         $products=Product::all();
-        return view('layouts.frontend.menu',compact('categories','products'));
+        return view('frontend.menu',compact('categories','products'));
     }
 
     /**

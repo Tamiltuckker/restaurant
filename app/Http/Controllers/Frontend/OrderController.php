@@ -17,16 +17,11 @@ class OrderController extends Controller
     {
        
         $user = Auth::user();
-        // Check the user has a User
-        if (!$user) {
-            throw ValidationException::withMessages(["This user doesn't have user"]);
-        }
-
         $cartData = CartHelper::getCart();
         
         // Check the cart has items
         if (!$cartData->items) {
-            throw ValidationException::withMessages(["There is no items in the cart"]);
+            return view('frontend.nocartdata')->with('error', 'No Record Found');
         }
 
         // Create a new order

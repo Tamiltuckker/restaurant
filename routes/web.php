@@ -1,4 +1,5 @@
 <?php
+
 use App\Http\Controllers\Admin\BookingController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CategoryController;
@@ -29,14 +30,14 @@ use App\Http\Controllers\Frontend\ChangePasswordController;
 */
 
 Route::get('/', function () {
-     return view('welcome');
+    return view('welcome');
 });
 
 Auth::routes();
 
 Route::prefix('admin')->name('webadmin.')->group(function () {
-    Route::get('/{user}/impersonate',[App\Http\Controllers\Admin\UserController::class,'impersonate'])->name('users.impersonate');
-    Route::get('/leave-impersonate',[App\Http\Controllers\Admin\UserController::class,'leaveImpersonate'])->name('users.leaveimpersonate');
+    Route::get('/{user}/impersonate', [App\Http\Controllers\Admin\UserController::class, 'impersonate'])->name('users.impersonate');
+    Route::get('/leave-impersonate', [App\Http\Controllers\Admin\UserController::class, 'leaveImpersonate'])->name('users.leaveimpersonate');
     Route::impersonate();
     Route::resource('categories', CategoryController::class);
     Route::resource('products', ProductController::class);
@@ -47,8 +48,8 @@ Route::prefix('admin')->name('webadmin.')->group(function () {
     Route::resource('bookings', BookingController::class);
 });
 
-Route::get('/dashboard/frontend',[App\Http\Controllers\Frontend\HomeController::class,'index'])->name('frontend.dashboard');
-Route::get('/category/{slug}',[App\Http\Controllers\Frontend\HomeController::class,'show'])->name('productcategory.show');
+Route::get('/dashboard/frontend', [App\Http\Controllers\Frontend\HomeController::class, 'index'])->name('frontend.dashboard');
+Route::get('/category/{slug}', [App\Http\Controllers\Frontend\HomeController::class, 'show'])->name('productcategory.show');
 Route::get('home', [App\Http\Controllers\Frontend\HomeController::class, 'home'])->name('home');
 Route::get('ourteam', [App\Http\Controllers\Frontend\HomeController::class, 'ourteam'])->name('ourteam');
 Route::get('about-us', [App\Http\Controllers\Frontend\HomeController::class, 'aboutUs'])->name('about.us');
@@ -62,15 +63,19 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('cartlist', [App\Http\Controllers\Frontend\CartController::class, 'cartList'])->name('cart.list');
 Route::post('cart', [App\Http\Controllers\Frontend\CartController::class, 'addToCart'])->name('cart.store');
-// Route::post('update-cart', [App\Http\Controllers\Frontend\CartController::class, 'updateCart'])->name('cart.update');
 Route::post('remove', [App\Http\Controllers\Frontend\CartController::class, 'removeFromCart'])->name('cart.remove');
 Route::post('clear', [App\Http\Controllers\Frontend\CartController::class, 'clearCart'])->name('cart.clear');
 
-Route::get('changepassword', [App\Http\Controllers\Frontend\ChangePasswordController::class,'index'])->name('changepassword.form');
+// order
+
+Route::post('order/', [App\Http\Controllers\Frontend\OrderController::class, 'store'])->name('orders.store');
+Route::get('order/order-clear-cart', [App\Http\Controllers\Frontend\OrderController::class, 'orderClearCart'])->name('orders.orderClearCart');
+
+Route::get('changepassword', [App\Http\Controllers\Frontend\ChangePasswordController::class, 'index'])->name('changepassword.form');
 Route::post('change-password', [App\Http\Controllers\Frontend\ChangePasswordController::class, 'store'])->name('change.password');
 Route::get('myprofile', [App\Http\Controllers\Frontend\ChangePasswordController::class, 'view'])->name('myprofile');
 
-Route::group(['middleware' => ['auth']], function() {
+Route::group(['middleware' => ['auth']], function () {
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
 });

@@ -34,6 +34,8 @@
             </ul>
         </div>
         @endif
+        {!! Form::open(['route' => 'orders.store', 'method' => 'post']) !!}
+        @csrf
         <div class="row g-4">
             <table class="table table-bordered">
                 <tr>
@@ -66,6 +68,7 @@
                 <button type="submit" class="btn btn-primary">PLACE ORDER</button>
             </div>
         </div>
+        {{ Form::close() }}
     </div>
 </div>
 @include('frontend.partials.footer')

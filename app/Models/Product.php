@@ -10,12 +10,14 @@ class Product extends Model
 {
     use Cartable;
     use HasFactory;
-    protected $table='products';
+
+    protected $table = 'products';
 
     public function image()
     {
         return $this->morphOne(Attachment::class, 'attachmentable');
     }
+
     public function sluggable(): array
     {
         return [
@@ -24,16 +26,14 @@ class Product extends Model
             ]
         ];
     }
+
     public function Category()
     {
-    	return $this->belongsTo(Category::class);
- 
-   
+        return $this->belongsTo(Category::class);
     }
+
     public function tags()
     {
         return $this->belongsToMany(Tag::class);
     }
-
-
 }

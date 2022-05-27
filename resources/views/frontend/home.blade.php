@@ -134,8 +134,6 @@
                     <div class="row g-4">
                         @foreach ($products as $product )
                         <div class="col-lg-6">
-                        <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
-                          @csrf
                             <div class="d-flex align-items-center">
                                 {{-- <img class="flex-shrink-0 img-fluid rounded" src="{{ asset('frontend/img/menu-1.jpg')}}" alt="" style="width: 80px;"> --}}
                                 <img src="{{asset('/storage/'.$product->image->attachmentable_image)}}" class="flex-shrink-0 img-fluid rounded" alt="" style="width: 80px;" />
@@ -143,20 +141,16 @@
                                     <h5 class="d-flex justify-content-between border-bottom pb-2">
                                         <span>{{$product->name}}</span>
                                         <span class="text-primary">Rs.{{$product->price}}</span>
-                                        <form action="{{ route('cart.store') }}" method="POST" enctype="multipart/form-data">
-                                            @csrf
                                             <input type="hidden" value="{{ $product->id }}" name="id">
                                             <input type="hidden" value="{{ $product->name }}" name="name">
                                             <input type="hidden" value="{{ $product->price }}" name="price">
                                             <input type="hidden" value="{{ $product->image }}" name="image">
                                             <input type="hidden" value="1" name="quantity">
                                             <small class="fst-italic">{{ $product->description }}</small>
-                                            <button class="btn-warning rounded">Add To Cart</button>
-                                        </form>
+                                            <button class="addtocart btn-warning rounded" data-quantity="1" data-product_id="{{ $product->id }}">Add To Cart</button>
                                     </h5>
                                 </div>
                             </div>
-                        </form>
                         </div>
                         @endforeach
                     </div>

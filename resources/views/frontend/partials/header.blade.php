@@ -58,10 +58,11 @@
                     <a href="{{ route('booking') }}" class="btn btn-primary py-2 px-4">Book A
                         Table</a>&nbsp;&nbsp;&nbsp;
 
-                    <!-- <button type="button" class="btn btn-primary py-2 px-4" data-toggle="dropdown"> -->
+                                @php
+                                    $cartCount = \App\Http\Helpers\CartHelper::getCartCount();
+                                @endphp
                     <a class="btn btn-primary py-2 px-4" data-toggle="dropdown" href="{{ route('cart.list') }}">
-                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ count((array) session('cart')) }}</span>
+                        <i class="fa fa-shopping-cart" aria-hidden="true"></i> Cart <span class="badge badge-pill badge-danger">{{ $cartCount }}</span>
                     </a>
-                    <!-- </button> -->
                 </div>
             </nav>

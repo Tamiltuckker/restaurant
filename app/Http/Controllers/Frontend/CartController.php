@@ -51,13 +51,11 @@ class CartController extends Controller
 
         CartHelper::setCartItemQuantity($productId, $quantity);
 
-        $data =  response()->json([
+         response()->json([
             'cart' => $this->getCart(),
             'count' => CartHelper::getCartCount(),
             'cartSound' => intval($quantity) >= $cartProductQuantity ? 'happy' : 'sad', // If we update more than cart item happy sound
         ]);
-
-        return redirect()->route('cart.list')->with('success', 'Your product added successfully');  
 
     }
 
